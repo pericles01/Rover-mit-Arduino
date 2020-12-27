@@ -1,0 +1,86 @@
+//Motor 1
+En1=3;
+pinA1=4;
+pinB2=5;
+//Motor 2
+En2=7;
+pinA2=8;
+pinB2=9;
+
+void start2()
+{
+//Motor 1 zur Drehung bringen
+	digitalWrite(pinA1,1);
+	digitalWrite(pinB1,0);
+//Motor 2 zur Drehung bringen
+	digitalWrite(pinA2,1);
+	digitalWrite(pinB2,0);
+//Drehen von 0 bis max. Geschwindigkeit
+	for( int i=0;i<256; i++)
+	{
+		analogWrite(En1,i);
+		analogWrite(En2,i);
+		delay(1000);
+	}
+//von max. Geschwindigkeit bis 0	
+	for( int i=255;i>=0; i--)
+	{
+		analogWrite(En1,i);
+		analogWrite(En2,i);
+		delay(1000);
+	}
+}
+
+void setup()
+{
+	//als Output festlegen
+	pinMode(En1,1);
+	pinMode(pinA1,1);
+	pinMode(pinB1,1);
+	pinMode(En2,1);
+	pinMode(pinA2,1);
+	pinMode(pinB2,1);
+
+	Serial.println("DC Motor Test");
+	
+}
+
+void loop()
+{
+//Motor 1 zur Drehung bringen
+	digitalWrite(pinA1,1);
+	digitalWrite(pinB1,0);
+//Geschwindigkeit festlegen
+	analogWrite(En1,200);
+
+//Motor 2 zur Drehung bringen
+	digitalWrite(pinA2,1);
+	digitalWrite(pinB2,0);
+//Geschwindigkeit festlegen
+	analogWrite(En2,200);
+	delay(2000);
+
+//dreht entgegengesetzt
+//Motor 1 zur Drehung bringen
+	digitalWrite(pinA1,0);
+	digitalWrite(pinB1,1);
+//Geschwindigkeit festlegen
+	analogWrite(En1,200);
+
+//Motor 2 zur Drehung bringen
+	digitalWrite(pinA2,0);
+	digitalWrite(pinB2,1);
+//Geschwindigkeit festlegen
+	analogWrite(En2,200);
+	delay(2000);
+	
+//Ausschalten
+	analogWrite(En1,0);
+	analogWrite(En2,0);
+
+start2();
+}
+
+
+
+
